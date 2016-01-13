@@ -22,13 +22,11 @@ class SendloopAPI3 {
 		$this->SetResponseFormat($ResponseFormat);
 
 		if (empty($APIKey)) {
-			echo 'APIKey is empty';
 			return false;
 		}
 		$this->APIKey = $APIKey;
 
 		if (empty($Subdomain)) {
-			echo 'Subdomain is empty';
 			return false;
 		}
 		$this->Subdomain = $Subdomain;
