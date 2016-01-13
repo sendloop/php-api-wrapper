@@ -22,13 +22,11 @@ class SendloopAPI3 {
 		$this->SetResponseFormat($ResponseFormat);
 
 		if (empty($APIKey)) {
-			echo 'APIKey is empty';
 			return false;
 		}
 		$this->APIKey = $APIKey;
 
 		if (empty($Subdomain)) {
-			echo 'Subdomain is empty';
 			return false;
 		}
 		$this->Subdomain = $Subdomain;
@@ -55,11 +53,7 @@ class SendloopAPI3 {
 
 		$APIURL = $this->MakeURL($APICommand);
 
-		$ParametersArray = array('APIKey='.$this->APIKey);
-		foreach ($Parameters as $Key => $Value) {
-			$ParametersArray[] = "$Key=$Value";
-		}
-		$ParametersString = implode('&',$ParametersArray);
+		$ParametersString = http_build_query($Parameters) . "&APIKey=$this->APIKey";
 
 		curl_setopt($cURL,CURLOPT_URL,$APIURL);
 		curl_setopt($cURL,CURLOPT_POST,1);
