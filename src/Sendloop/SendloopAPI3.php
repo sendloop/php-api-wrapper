@@ -57,7 +57,13 @@ class SendloopAPI3 {
 
 		$ParametersArray = array('APIKey='.$this->APIKey);
 		foreach ($Parameters as $Key => $Value) {
-			$ParametersArray[] = "$Key=$Value";
+			if (is_array($Value)) {
+				foreach ($Value as $V_Key => $V_Value) {
+					$ParametersArray[] = $Key."[".$V_Key."]=".$V_Value;
+				}
+			} else {
+				$ParametersArray[] = "$Key=$Value";
+			}
 		}
 		$ParametersString = implode('&',$ParametersArray);
 
