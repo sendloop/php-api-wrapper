@@ -55,11 +55,9 @@ class SendloopAPI3 {
 
 		$APIURL = $this->MakeURL($APICommand);
 
-		$ParametersArray = array('APIKey='.$this->APIKey);
-		foreach ($Parameters as $Key => $Value) {
-			$ParametersArray[] = "$Key=$Value";
-		}
-		$ParametersString = implode('&',$ParametersArray);
+		$Parameters['APIKey'] = $this->APIKey;
+
+		$ParametersString = http_build_query($Parameters);
 
 		curl_setopt($cURL,CURLOPT_URL,$APIURL);
 		curl_setopt($cURL,CURLOPT_POST,1);
